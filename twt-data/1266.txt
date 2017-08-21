@@ -1,0 +1,1 @@
+puts the difficulty on easy because I know who I am and I enjoy having fun
