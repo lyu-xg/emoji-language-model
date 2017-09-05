@@ -41,9 +41,14 @@ def is_data_keep(res):
     # use only un-truncated English text responses
     return 'text' in res and not res['truncated'] and res['lang']=='en'
 
+def got_some_emoji(t):
+    # return True iff:
+    # given t ends with emoji and has two or more emojis in it.
+    return t[-1] in emoji_set and sum(1 if char in emoji_set else 0 for char in t) >= 3
+
 def is_text_keep(t):
     # decided to keep the text if it is not a retweet and ends with an emoji
-    return t and not t.startswith('RT') and t[-1] in emoji_set
+    return t and not t.startswith('RT') and got_some_emoji(t)
 
 
 
@@ -72,11 +77,12 @@ class MyListener(StreamListener):
         print('status code: {}'.format(status))
 
 def main():
-    l = MyListener(open('outfile.txt','w'))
+    l = MyListener(open('north.txt','w'))
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l)
-    stream.filter(track=list('qwertyuiopasdfghjklzxcvbnm'))#,async=True)
+    stream.filter(track=list(('north')))#,async=True)
+    #stream.filter(track=list(emoji_set))
 
 if __name__ == '__main__':
 

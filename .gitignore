@@ -41,3 +41,4 @@ jspm_packages
 *data/
 __pycache__/
 .ipynb_checkpoints/
+*.pyc

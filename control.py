@@ -9,6 +9,11 @@ def main():
     while 1:
         try:
             download()
+        except (KeyboardInterrupt, SystemExit):
+        	print('\n\nSaving current progress.')
+        	dump()
+        	print('done.')
+        	break
         except:
             dump()
 

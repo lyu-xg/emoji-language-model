@@ -1,1 +1,0 @@
-Checking account balance math is wildly different from regular math.. something isn't adding up right.

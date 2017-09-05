@@ -13,7 +13,7 @@ data_folder = 'data/'
 
 def clean():
     '''
-        None -> line generator
+        None -> line generator (read from disk)
     '''
     with open('old_outfile.txt') as infile:
         for line in infile:
@@ -24,7 +24,7 @@ def clean():
 
 def seperate_emojis(line):
     '''
-        line -> (text, emoji) pairs
+        line -> (text, emoji) pair
     '''
     text_part = ''.join(filter(lambda x: x not in emoji_set, line))
     return text_part.strip(), list(set(filter(lambda x: x in emoji_set, line)))
